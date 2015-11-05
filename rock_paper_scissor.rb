@@ -9,8 +9,7 @@ class RockPaperScissor
   end
 
   def computer
-    arr = ["rock", "paper", "scissor"]
-    @computer = arr.sample
+    @computer = ["rock", "paper", "scissor"].sample
   end
 
   def input
@@ -26,17 +25,26 @@ class RockPaperScissor
 
   def play
     dash = ("-") * 17
+    puts "\nFirst to three wins!\n"
     until winner?(@player_score, @computer_score)
       @player = input
       computer
       puts dash
-      puts "Player: #{@player.capitalize}"
-      puts "Computer: #{@computer.capitalize}"
+      print_choices(@player, @computer)
       won?(@player, @computer)
       puts dash
-      puts "Player score: #{@player_score}"
-      puts "Computer score: #{@computer_score}"
+      scoreboard(@player_score, @computer_score)
     end
+  end
+
+  def print_choices(player, computer)
+    puts "Player: #{player.capitalize}"
+    puts "Computer: #{computer.capitalize}"
+  end
+
+  def scoreboard(player_score, computer_score)
+    puts "Player score: #{player_score}"
+    puts "Computer score: #{computer_score}"
   end
 
   def won?(player, computer)
@@ -72,7 +80,7 @@ class RockPaperScissor
 
   def winner?(player_score, computer_score)
     if player_score == 3
-      puts "You have defeated the computer!"
+      puts "You defeated the computer!"
       exit
     elsif computer_score == 3
       puts "The computer has defeated you."
