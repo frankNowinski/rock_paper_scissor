@@ -90,5 +90,4 @@ class RockPaperScissor
 end
 
 game = RockPaperScissor.new
-
 game.play
